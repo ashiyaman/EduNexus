@@ -46,8 +46,6 @@ Ensure you have the following installed:
 - 🎨 **Frontend**: React.js with Redux & Redux Toolkit (Slice Redux)
 - ⚙️ **Backend**: Node.js with Express
 - 🗄️ **Database**: MongoDB
-- 🔐 **Authentication**: JWT / OAuth
-- ☁️ **Hosting**: AWS / Firebase / Heroku
 
 ## 🤝 Contribution
 Contributions are welcome! To contribute:
@@ -56,10 +54,4 @@ Contributions are welcome! To contribute:
 3. 💾 Commit changes: `git commit -m "Add new feature"`
 4. 🚀 Push to the branch: `git push origin feature-branch`
 5. 🔄 Open a Pull Request.
-
-## 📜 License
-This project is licensed under the MIT License.
-
-## 📬 Contact
-For support, reach out via [your email] or create an issue in the repository.
 
