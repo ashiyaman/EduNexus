@@ -15,8 +15,8 @@ app.get("/", (req, res) => {
   res.send("Hello, Express!");
 });
 
-const jsonData = fs.readFileSync('./students.json')
-const studentsData = JSON.parse(jsonData)
+/*const jsonData = fs.readFileSync('./students.json')
+const studentsData = JSON.parse(jsonData)*/
 
 const seedData = () => {
   try{
