@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const fs = require("fs")
 
 const { initializeDatabase } = require("./db/db.connection");
 const { Student } = require("./models/students.model");
@@ -13,6 +14,31 @@ initializeDatabase();
 app.get("/", (req, res) => {
   res.send("Hello, Express!");
 });
+
+const jsonData = fs.readFileSync('./students.json')
+const studentsData = JSON.parse(jsonData)
+
+const seedData = () => {
+  try{
+    for(const studentData of studentsData){
+      const student = Student({
+        name: studentData.name,
+        age: studentData.age,
+        gender: studentData.gender,
+        marks: studentData.marks,
+        attendance: studentData.attendance,
+        grade: studentData.grade,
+      })
+
+      student.save()
+    }
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
+//seedData()
 
 app.get("/students", async (req, res) => {
   try {
