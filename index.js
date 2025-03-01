@@ -5,6 +5,7 @@ const fs = require("fs")
 
 const { initializeDatabase } = require("./db/db.connection");
 const { Student } = require("./models/students.model");
+const { error } = require("console");
 
 app.use(cors());
 app.use(express.json());
@@ -60,6 +61,21 @@ app.post("/students", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+app.get("/students/:studentId", async(req, res) => {
+  try{
+    const student = Student.findById(req.params.studentId)
+    if(student){
+      res.status(200).json(student)
+    }
+    else{
+      res.status(400).json({error: "Student not found."})
+    }
+  }
+  catch(error){
+    res.status(500).json({ error: "Internal Server Error" })
+  }
+})
 
 app.put("/students/:id", async (req, res) => {
   const studentId = req.params.id;
