@@ -64,7 +64,7 @@ app.post("/students", async (req, res) => {
 
 app.get("/students/:studentId", async(req, res) => {
   try{
-    const student = Student.findById(req.params.studentId)
+    const student = await Student.findById(req.params.studentId)
     if(student){
       res.status(200).json(student)
     }
