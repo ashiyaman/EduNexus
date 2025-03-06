@@ -152,6 +152,19 @@ app.delete('/students/:id', async (req, res) => {
     }
  })
 
+ app.delete('/teachers/:teacherId', async(req, res) => {
+  try{
+    const deletedTeacher = await Teacher.findByIdAndDelete(req.params.teacherId)
+    if (!deletedTeacher) {
+      return res.status(404).json({ error: 'Teacher not found' });
+    }
+    res.status(200).json(deletedTeacher)
+  }
+  catch(error){
+    res.status(500).json({error: 'Internal Server Error'})
+  }
+ })
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
