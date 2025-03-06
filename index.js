@@ -114,7 +114,6 @@ app.put('/students/:id', async (req, res) => {
 
     res.status(200).json(updatedStudent);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
 });
@@ -135,7 +134,6 @@ app.delete('/students/:id', async (req, res) => {
         student: deletedStudent,
       });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -167,12 +165,25 @@ app.delete('/students/:id', async (req, res) => {
 
 app.put('/teachers/:teacherId', async(req, res) => {
   try{
-    const teacherId = req.params.teacherId
+    const teacherId = req.params
+    
     const updatedTeacher = await Teacher.findByIdAndUpdate(teacherId, req.body, {new: true})
     if (!updatedTeacher) {
       return res.status(404).json({ error: 'Teacher not found' });
     }
     res.status(200).json(updatedTeacher)
+  }
+  catch(error){
+    res.status(500).json({error: 'Internal Server Error'})
+  }
+})
+
+app.post('/teachers', async (req, res) => {
+  const {name, subject, experience, email, phone} = req.body
+  try{
+    const newTeacher = await new Teacher({name, subject, experience, email, phone})
+    newTeacher.save()
+    res.status(200).json(newTeacher)
   }
   catch(error){
     res.status(500).json({error: 'Internal Server Error'})
