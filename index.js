@@ -17,8 +17,8 @@ app.get('/', (req, res) => {
   res.send('Hello, Express!');
 });
 
-const jsonData = fs.readFileSync('./teachers.json')
-const teachersData = JSON.parse(jsonData)
+/*const jsonData = fs.readFileSync('./teachers.json')
+const teachersData = JSON.parse(jsonData)*/
 
 const seedData = () => {
   try{
@@ -59,7 +59,7 @@ const seedTeacherData = () => {
 }
 
 //seedData()
-seedTeacherData()
+//seedTeacherData()
 
 app.get('/students', async (req, res) => {
   try {
