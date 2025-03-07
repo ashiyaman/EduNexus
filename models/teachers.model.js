@@ -6,7 +6,9 @@ const teacherSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        subject: String,
+        subjects:  [{
+            type: String
+        }],
         experience: {
             type: Number,
             required: true

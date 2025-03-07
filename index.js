@@ -45,7 +45,7 @@ const seedTeacherData = () => {
     for(const teacherData of teachersData){
       const teacher = Teacher({
         name: teacherData.name,
-        subject: teacherData.subject,
+        subjects: teacherData.subjects,
         experience: teacherData.experience,
         email: teacherData.email,
         phone: teacherData.phone,
@@ -179,9 +179,9 @@ app.put('/teachers/:teacherId', async(req, res) => {
 })
 
 app.post('/teachers', async (req, res) => {
-  const {name, subject, experience, email, phone} = req.body
+  const {name, subjects, experience, email, phone} = req.body
   try{
-    const newTeacher = await new Teacher({name, subject, experience, email, phone})
+    const newTeacher = await new Teacher({name, subjects, experience, email, phone})
     newTeacher.save()
     res.status(200).json(newTeacher)
   }
